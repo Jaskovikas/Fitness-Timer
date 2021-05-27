@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="workout"
+            type="edu.ktu.fitnessapp.entities.Workout" />
+        <variable
+            name="viewmodel"
+            type="edu.ktu.fitnessapp.WorkoutViewModel" />
+        <variable
+            name="timeFormatted"
+            type="String" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/main_workout_text"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:text="@{workout.name}"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="My Workout #1" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Total time:"
+            android:textColor="@color/rich_black"
+            app:layout_constraintBottom_toBottomOf="@+id/main_workout_text"
+            app:layout_constraintStart_toEndOf="@+id/main_workout_text"
+            app:layout_constraintTop_toTopOf="@+id/main_workout_text" />
+
+        <TextView
+            android:id="@+id/workout_length_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@{timeFormatted}"
+            android:textColor="@color/shadow_blue"
+            tools:text="05:30"
+            app:layout_constraintStart_toEndOf="@+id/textView2"
+            app:layout_constraintTop_toTopOf="@+id/textView2" />
+
+        <Button
+            android:id="@+id/start_workout_btn"
+            android:layout_width="33dp"
+            android:layout_height="33dp"
+            android:layout_marginStart="16dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:onClick="@{() -> viewmodel.doRoutine(workout.workoutId)}"
+            app:icon="@drawable/ic_baseline_play_arrow_24"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/workout_length_text"
+            app:layout_constraintStart_toEndOf="@+id/workout_length_text"
+            app:layout_constraintTop_toTopOf="@+id/workout_length_text" />
+
+        <Button
+            android:id="@+id/delete_workout_btn"
+            android:layout_width="33dp"
+            android:layout_height="33dp"
+            android:layout_marginStart="8dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:onClick="@{() -> viewmodel.deleteRoutine(workout.workoutId)}"
+            app:icon="@drawable/ic_baseline_delete_24"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:layout_constraintStart_toEndOf="@+id/start_workout_btn"
+            app:layout_constraintTop_toTopOf="@+id/start_workout_btn" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

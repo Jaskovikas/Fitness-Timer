@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:tint="@color/white"
+        android:id="@+id/save_routine"
+        android:icon="@drawable/ic_baseline_save_24"
+        android:iconTint="@color/white"
+        android:title="Save Routine"
+        android:text="Save Routine"
+        app:showAsAction="ifRoom"
+        />
+    <item
+        android:tint="@color/white"
+        android:id="@+id/start_routine"
+        android:icon="@drawable/ic_baseline_play_arrow_24"
+
+        android:title="Start Routine"
+        android:text="Start Routine"
+        app:showAsAction="ifRoom" />
+
+
+</menu>

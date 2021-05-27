@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="edu.ktu.fitnessapp.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_workoutFragment"
+            app:destination="@id/workoutFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/workoutFragment"
+        android:name="edu.ktu.fitnessapp.WorkoutFragment"
+        android:label="fragment_workout"
+        tools:layout="@layout/fragment_workout" >
+        <action
+            android:id="@+id/action_workoutFragment_to_sessionFragment"
+            app:destination="@id/sessionFragment" />
+        <action
+            android:id="@+id/action_workoutFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <argument
+            android:name="workoutId"
+            app:argType="long" />
+    </fragment>
+    <fragment
+        android:id="@+id/sessionFragment"
+        android:name="edu.ktu.fitnessapp.SessionFragment"
+        android:label="fragment_session"
+        tools:layout="@layout/fragment_session" >
+        <action
+            android:id="@+id/action_sessionFragment_to_workoutFragment"
+            app:destination="@id/workoutFragment" />
+        <action
+            android:id="@+id/action_sessionFragment_to_finishFragment"
+            app:destination="@id/finishFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/finishFragment"
+        android:name="edu.ktu.fitnessapp.FinishFragment"
+        android:label="FinishFragment" >
+        <action
+            android:id="@+id/action_finishFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+</navigation>

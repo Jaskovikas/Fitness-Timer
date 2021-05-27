@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="set"
+            type="edu.ktu.fitnessapp.Set" />
+        <variable
+            name="viewmodel"
+            type="edu.ktu.fitnessapp.SetViewModel" />
+        <variable
+            name="pos"
+            type="Integer" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/border"
+        android:backgroundTint="@color/silver">
+
+
+        <TextView
+            android:id="@+id/set_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/rich_black"
+            android:text="@{String.format(@string/setName, pos+1)}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Set #1" />
+
+        <Button
+            android:id="@+id/delete_set_btn"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="8dp"
+            android:onClick="@{() -> viewmodel.deleteSet(pos)}"
+            android:paddingLeft="2dp"
+            android:paddingTop="2dp"
+            android:paddingRight="2dp"
+            android:paddingBottom="2dp"
+            app:icon="@drawable/ic_baseline_delete_24"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/add_exercise"
+            app:layout_constraintStart_toEndOf="@+id/add_exercise"
+            app:layout_constraintTop_toTopOf="@+id/add_exercise" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/set_text" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/exercise_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view"
+            app:setExercises="@{set.exercises}"
+            app:setSetNumber="@{pos}"
+            app:setViewModel="@{viewmodel}"
+            tools:itemCount="2"
+            tools:listitem="@layout/item_exercise">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <Button
+            android:id="@+id/add_exercise"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="50dp"
+            android:layout_marginBottom="16dp"
+            android:onClick="@{(v) -> viewmodel.addNewExercise(set.number)}"
+            android:paddingLeft="8dp"
+            android:paddingTop="2dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="2dp"
+            android:text="Add Exercise"
+            android:textSize="10sp"
+            app:icon="@drawable/ic_baseline_add_circle_24"
+            app:iconPadding="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/exercise_list" />
+
+        <Button
+            android:id="@+id/subtract_count_btn"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="16dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:onClick="@{() -> viewmodel.subtractSetCount(pos)}"
+            android:paddingLeft="2dp"
+            android:paddingTop="2dp"
+            android:paddingRight="2dp"
+            android:paddingBottom="2dp"
+            app:elevation="0dp"
+            app:icon="@drawable/ic_baseline_remove_circle_outline_24"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/set_text"
+            app:layout_constraintStart_toEndOf="@+id/set_text"
+            app:layout_constraintTop_toTopOf="@+id/set_text"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.Button.Circle" />
+
+        <Button
+            android:id="@+id/add_count_btn"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="4dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:onClick="@{() -> viewmodel.addtSetCount(pos)}"
+            android:paddingLeft="2dp"
+            android:paddingTop="2dp"
+            android:paddingRight="2dp"
+            android:paddingBottom="2dp"
+            app:elevation="0dp"
+            app:icon="@drawable/ic_baseline_add_circle_outline_12"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:layout_constraintStart_toEndOf="@+id/set_count_text"
+            app:layout_constraintTop_toTopOf="@+id/set_count_text"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.Button.Circle" />
+
+        <TextView
+            android:id="@+id/set_count_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:textColor="@color/rich_black"
+            android:text="@{String.format(@string/setCount, set.count)}"
+            app:layout_constraintStart_toEndOf="@+id/subtract_count_btn"
+            app:layout_constraintTop_toTopOf="@+id/subtract_count_btn"
+            tools:text="1x" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

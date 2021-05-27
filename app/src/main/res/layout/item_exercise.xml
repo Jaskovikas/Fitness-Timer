@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="exercise"
+            type="edu.ktu.fitnessapp.Exercise" />
+        <variable
+            name="viewmodel"
+            type="edu.ktu.fitnessapp.SetViewModel" />
+        <variable
+            name="pos"
+            type="Integer" />
+        <variable
+            name="setPos"
+            type="Integer" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/time_text"
+            android:layout_width="89dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="15dp"
+            android:afterTextChanged="@{(text) -> viewmodel.onExerciseTimeChanged(text, pos, setPos)}"
+            android:ems="10"
+            android:hint="mm:ss"
+            android:inputType="textPersonName"
+            android:textColor="@color/rich_black"
+            android:text="@{exercise.timeText}"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/exercise_name"
+            app:layout_constraintTop_toTopOf="@+id/exercise_name" />
+
+        <EditText
+            android:id="@+id/exercise_name"
+            android:layout_width="170dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:afterTextChanged="@{(text) -> viewmodel.onExerciseNameChanged(text, pos, setPos)}"
+            android:ems="10"
+            android:hint="Exercise name"
+            android:inputType="textPersonName"
+            android:textColor="@color/rich_black"
+            android:text="@{exercise.name}"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/delete_exercise_btn"
+            android:layout_width="37dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="8dp"
+            android:onClick="@{() -> viewmodel.deleteExercise(pos, setPos)}"
+            app:icon="@drawable/ic_baseline_close_24"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:layout_constraintStart_toEndOf="@+id/time_text"
+            app:layout_constraintTop_toTopOf="@+id/time_text" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
